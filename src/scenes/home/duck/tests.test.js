@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import actions from './actions';
 import operations from './operations';
+import { hotelDataStatus, hotelDataResult } from './reducers';
 import * as types from './types';
 import * as constants from '../constants';
 
@@ -44,5 +45,22 @@ describe('actions', () => {
     };
 
     expect(actions.failedToFetchHotelData()).toEqual(expectedAction);
+  });
+});
+
+describe('hotelDataStatus reducer', () => {
+  it('should return the initial state', () => {
+    expect(hotelDataStatus(undefined, {})).toEqual({
+      status: constants.HOTEL_DATA_IDLE,
+    });
+  });
+});
+
+describe('hotelDataResult reducer', () => {
+  it('should return the initial state', () => {
+    expect(hotelDataResult(undefined, {})).toEqual({
+      hotels: [],
+      filterTerms: [],
+    });
   });
 });
