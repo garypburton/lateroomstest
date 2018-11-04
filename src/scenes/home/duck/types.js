@@ -1,2 +1,7 @@
-export const HOTEL_DATA_STATUS = 'hoteldata:status';
-export const HOTEL_DATA_RESULT = 'hoteldata:result';
+const HOTEL_DATA_STATUS = 'hoteldata:status';
+const HOTEL_DATA_RESULT = 'hoteldata:result';
+
+export default {
+  HOTEL_DATA_STATUS,
+  HOTEL_DATA_RESULT,
+};

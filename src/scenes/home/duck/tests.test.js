@@ -4,7 +4,7 @@ import fetchMock from 'fetch-mock';
 import actions from './actions';
 import operations from './operations';
 import { hotelDataStatus, hotelDataResult } from './reducers';
-import * as types from './types';
+import types from './types';
 import * as constants from '../constants';
 
 const middlewares = [thunk];

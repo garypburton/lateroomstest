@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as types from './types';
+import types from './types';
 import { HOTEL_DATA_IDLE } from '../constants';
 
 const statusInitialState = {

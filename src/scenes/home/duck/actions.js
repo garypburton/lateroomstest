@@ -1,4 +1,4 @@
-import * as types from './types';
+import types from './types';
 import * as constants from '../constants';
 
 const willFetchHotelData = () => ({
@@ -22,8 +22,16 @@ const failedToFetchHotelData = () => ({
   },
 });
 
+const hotelDataResult = data => ({
+  type: types.HOTEL_DATA_RESULT,
+  payload: {
+    ...data,
+  },
+});
+
 export default {
   willFetchHotelData,
   didFetchHotelData,
   failedToFetchHotelData,
+  hotelDataResult,
 };
