@@ -5,7 +5,7 @@ import * as constants from './constants';
 
 type Props = {
   filterTerms: Array<string>,
-  getData: Function,
+  getData: () => void,
   hotels: Array<{
     name: string,
     starRating: number,
