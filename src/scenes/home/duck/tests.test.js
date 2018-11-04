@@ -48,6 +48,83 @@ describe('actions', () => {
   });
 });
 
+describe('async actions', () => {
+  afterEach(() => {
+    fetchMock.restore();
+  });
+
+  it('gets data and creates correct data and action in store', () => {
+    fetchMock.getOnce('/hotels.json', {
+      body: [
+        {
+          name: 'hotelone',
+          starRating: 5,
+          facilities: ['car park', 'pool'],
+        },
+        {
+          name: 'hoteltwo',
+          starRating: 3,
+          facilities: ['car park', 'gym'],
+        },
+        {
+          name: 'hotelthree',
+          starRating: 3,
+          facilities: [],
+        },
+      ],
+      headers: { 'content-type': 'application/json' },
+    });
+
+    const expectedActions = [
+      {
+        type: types.HOTEL_DATA_STATUS,
+        payload: {
+          status: 'hoteldata:status:pending',
+        },
+      },
+      {
+        type: types.HOTEL_DATA_RESULT,
+        payload: {
+          hotels: [
+            {
+              name: 'hotelone',
+              starRating: 5,
+              facilities: ['car park', 'pool'],
+            },
+            {
+              name: 'hoteltwo',
+              starRating: 3,
+              facilities: ['car park', 'gym'],
+            },
+            {
+              name: 'hotelthree',
+              starRating: 3,
+              facilities: [],
+            },
+          ],
+          filterTerms: ['car park', 'pool', 'gym'],
+        },
+      },
+      {
+        type: types.HOTEL_DATA_STATUS,
+        payload: {
+          status: 'hoteldata:status:complete',
+        },
+      },
+    ];
+    const store = mockStore({
+      hotelDataResult: {
+        hotels: [],
+        filterTerms: [],
+      },
+    });
+
+    return store.dispatch(operations.getHotelData()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+});
+
 describe('hotelDataStatus reducer', () => {
   it('should return the initial state', () => {
     expect(hotelDataStatus(undefined, {})).toEqual({
