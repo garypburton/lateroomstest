@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import StarRating from '../StarRating';
@@ -20,7 +21,13 @@ const Facility = styled.li`
   font-size: 14px;
 `;
 
-function HotelListItem({ facilities, name, starRating }) {
+type Props = {
+  name: string,
+  starRating: number,
+  facilities: Array<string>,
+};
+
+function HotelListItem({ facilities, name, starRating }: Props) {
   return (
     <Item>
       <Name>{name}</Name>

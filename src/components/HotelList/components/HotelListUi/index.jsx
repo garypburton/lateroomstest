@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -5,7 +6,11 @@ const Wrap = styled.div`
   margin-bottom: 20px;
 `;
 
-function HotelListUi({ filterTerms }) {
+type Props = {
+  filterTerms: Array<string>,
+};
+
+function HotelListUi({ filterTerms }: Props) {
   return (
     <Wrap>
       <fieldset>

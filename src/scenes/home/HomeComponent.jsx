@@ -1,8 +1,20 @@
+/* @flow */
 import React, { Component, lazy, Suspense } from 'react';
 import Loading from '../../components/Loading';
 import * as constants from './constants';
 
-export class HomeComponent extends Component {
+type Props = {
+  filterTerms: Array<string>,
+  getData: Function,
+  hotels: Array<{
+    name: string,
+    starRating: number,
+    facilities: Array<string>,
+  }>,
+  status: string,
+};
+
+export class HomeComponent extends Component<Props> {
   componentDidMount() {
     const { getData } = this.props;
 

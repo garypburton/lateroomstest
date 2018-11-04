@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import styled from 'styled-components';
 import HotelListItem from './components/HotelListItem';
@@ -7,7 +8,16 @@ const ListWrap = styled.ul`
   width: 100%;
 `;
 
-function HotelList({ hotels, filterTerms }) {
+type Props = {
+  hotels: Array<{
+    name: string,
+    starRating: number,
+    facilities: Array<string>,
+  }>,
+  filterTerms: Array<string>,
+};
+
+function HotelList({ hotels, filterTerms }: Props) {
   return (
     <React.Fragment>
       <HotelListUi filterTerms={filterTerms} />
